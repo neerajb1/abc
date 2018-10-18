@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "fileName": "getfiledata.txt",
+      "AttributeList": [
+        {
+          "name": "fromdate",
+          "Value": "01-10-2018"
+        },
+        {
+          "name": "todate",
+          "Value": "today"
+        }
+      ]
+    },
+	{
+      "fileName": "getfiledata1.txt",
+      "AttributeList": [
+        {
+          "name": "fromdate",
+          "Value": "01-10-2018"
+        },
+        {
+          "name": "todate",
+          "Value": "tommorow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+select * from table2 where datediff(day,fromdate, todate)=1
