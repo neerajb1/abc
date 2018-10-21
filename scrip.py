@@ -3,8 +3,8 @@ import os
 import fileinput
 import datetime
 from dateutil.parser import *
-dir_name=r'C:\Users\neeraj.shukla\Downloads\sqldata\sqldata'
-
+# dir_name=r'C:\Users\neeraj.shukla\Downloads\sqldata\sqldata'
+dir_name=r'C:\Users\Neeraj\Desktop\abc\sqldata'
 
 # conn=psycopg2.connect("
 #                     dbname=sales
@@ -48,35 +48,29 @@ def data_convert():
         for x in loaded_json:
             data = loaded_json[x]
             for file_number in range(len(data)):
-
                 file_detail = data[file_number]
-
-                file_name = file_detail['fileName']
-
+                file_name = file_detail["fileName"]
                 attribute_list = file_detail['AttributeList']
                 file_loc = os.path.join(dir_name,file_name)
-                # with open(file_loc  , 'r') as file:
-                #     data = file.read()
-                #     print(data)
-                for attr_num in range(len(attribute_list)):
-                        attribute = attribute_list[attr_num]
-                        att_name = attribute['name']
-                        att_value = attribute['Value']
-                        att_value = handleDate(att_value)
-                        print(att_value)
+                query = get_query(file_loc ,attribute_list )
+                print(query)
 
 
 
-                # with open(file_loc  , 'r') as file:
-                #     data = file.read()
-                #
-                #     for attr_num in range(len(attribute_list)):
-                #         attribute = attribute_list[attr_num]
-                #         att_name = attribute['name']
-                #         att_value = attribute['Value']
-                #         att_value = handleDate(att_value)
-                #         data = data.replace(att_name, att_value)
-                #     print(data)
+
+
+def get_query(file_loc , attribute_list):
+    with open(file_loc) as f:
+        content = f.read()
+        print(content)
+        for attr_num in range(len(attribute_list)):
+                attribute = attribute_list[attr_num]
+                att_name = attribute['name']
+                att_value = attribute['Value']
+                att_value = handleDate(att_value)
+                if att_name in content:
+                    content = content.replace(att_name , att_value)
+        return content
 
 
 # def script(conn , query ):
